@@ -1,0 +1,524 @@
+    {% load static %}
+<!--    <!DOCTYPE html>-->
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Creative Responsive Bootstrap Multi-Purpose HTML Template">
+    <meta name="keywords" content="H2O, Creative, Agency, Portfolio, Freelancer, Shop, Store,Bootstrap, HTML, Template, One page">
+    <meta name="author" content="Vadzim Liashkevich">
+
+    <!-- SITE TITLE -->
+    <title>Доктор Азиз Кахраманович</title>
+
+    <!-- =========================
+          FAV AND TOUCH ICONS
+    ============================== -->
+    <link rel="shortcut icon" href="static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/images/apple-touch-icon-114x114.png">
+
+    <!-- =========================
+         STYLESHEETS
+    ============================== -->
+
+    <link rel="stylesheet" type="text/css" href="static/css/master.css" />
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar">
+    <div class="preloader" id="preloader"> <img src="static/images/preloader.gif" alt="" /> </div>
+    <!-- =========================
+         TOP BAR
+    ============================== -->
+    <div class="top-bar" id="top-bar">
+      <div class="container">
+        <div class="row">
+
+          <!-- TOP BAR LEFT -->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            {% for contact in contacts %}
+            <div class="top-bar-adress"><i class="flaticon-navigation-arrow"></i>{{ contact.address }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- TOP BAR RIGHT -->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+            {% for contact in contacts %}
+            <div class="top-bar-social">
+              <a href="{{ contact.facebook }}"><i class="fa fa-facebook"></i></a>
+              <a href="{{ contact.google }}"><i class="fa fa-google-plus"></i></a>
+              <a href="{{ contact.twitter }}"><i class="fa fa-twitter"></i></a>
+              <a href="{{ contact.skype }}"><i class="fa fa-skype"></i></a>
+            </div>
+            <div class="top-bar-mail">
+              <i class="fa fa-envelope"></i><a href="{{ contact.email_ssylka }}">{{ contact.email }}</a>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- =========================
+         END TOP BAR
+    ============================== -->
+
+    <!-- =========================
+         HEADER
+    ============================== -->
+    <div class="header" id="header">
+      <div class="container">
+        <div class="row">
+
+          <!-- HEADER LOGO -->
+          <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <div class="header-logo"> <a href="#"><img src="static/images/logo.svg" alt="" />
+                <span class="bold600 color-child-6">
+                  Aziz
+                </span>
+                <span class="color-child-5">
+                 Talipov
+                </span>
+              </a> </div>
+          </div>
+
+          <!-- HEADER BUTTONS -->
+          <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+            <div class="header-button"> <a href="#bookformtop" class="fancybox-2 btn btn-default">
+                <span class="plus">
+                  +
+                </span>
+                Записаться </a> </div>
+            {% for contact in contacts %}
+            <div class="header-phone"> <i class="fa fa-phone"></i> {{ contact.phone }} </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- =========================
+         END HEADER
+    ============================== -->
+
+    <!-- =========================
+         MAIN MENU
+    ============================== -->
+    <div id="smartposition"></div>
+    <div class="top-menu" id="top-menu">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="mobile-bar-cont">
+              <div class="top-menu-logo"> <a href="#"><img src="static/images/logo.svg" alt="" />
+                  <span class="bold600 color-child-6">
+                    AZIZ
+                  </span>
+                  <span class="color-child-5">
+                    TALIPOV
+                  </span>
+                </a> </div>
+              <div class="mobile-bar">
+                <div class="show-menu" id="show-menu"> <i class="fa fa-bars"></i> </div>
+                <div class="logo-for-mobile"> <a href="#" title="#"> <img src="static/images/logo_m.png" alt=""> </a> </div>
+              </div>
+            </div>
+            <ul class="nav navbar-nav">
+              <li {% if page == 'index' %} class="active" {% endif %} ><a href="/" >Главная</a></li>
+              <li {% if page == 'about' %} class="active" {% endif %} ><a href="/about" >О нас</a></li>
+              <li class="dropdown" {% if page == 'about' %} class="active" {% endif %} > <a data-toggle="dropdown" href="/services" >Услуги</a>
+                <ul class="dropdown-menu with-bg" role="menu">
+                  <li><a href="services.html">Oral exams</a></li>
+                  <li><a href="services.html">Teeth whitening</a></li>
+                  <li><a href="services.html">Teeth cleaning</a></li>
+                  <li><a href="services.html">X-rays</a></li>
+                  <li><a href="services.html">Crowns</a></li>
+                  <li><a href="services.html">Fillings and bridges</a></li>
+                  <li><a href="services.html">Implants</a></li>
+                  <li><a href="services.html">Extractions</a></li>
+                  <li><a href="services.html">Root canals</a></li>
+                  <li><a href="services.html">Surgical implant placements</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"> <a data-toggle="dropdown" href="/about" {% if page == 'about' %} class="menu-active" {% endif %} >Наша команда</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="doctors.html">Our doctors</a></li>
+                  <li><a href="doctor.html">Doctor</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"> <a data-toggle="dropdown" href="/blog" {% if page == 'blog' %} class="menu-active" {% endif %} >Блог</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="blog1.html">Right sidebar</a></li>
+                  <li><a href="blog2.html">Left sidebar</a></li>
+                  <li><a href="blog3.html">No sidebar</a></li>
+                  <li><a href="blog4.html">Column right sidebar</a></li>
+                  <li><a href="blog_item.html">Post with sidebar</a></li>
+                  <li><a href="blog_item2.html">Post no sidebar</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"> <a data-toggle="dropdown" href="/about" {% if page == 'about' %} class="menu-active" {% endif %} >Полезные</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="templates/gallery1.html">Gallery 1</a></li>
+                  <li><a href="templates/gallery2.html">Gallery 2</a></li>
+                  <li><a href="templates/prices.html">Prices</a></li>
+                  <li><a href="templates/timetable.html">Timetable</a></li>
+                  <li><a href="templates/payment.html">Payments</a></li>
+                  <li><a href="templates/404.html">404 Page</a></li>
+                </ul>
+              </li>
+              <li><a href="/contacts" {% if page == 'about' %} class="menu-active" {% endif %} >Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+      {% block content %}
+
+      {% endblock %}
+
+
+
+    <!-- =========================
+        FOOTER
+    ============================== -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-matchheight">
+            <div class="row">
+
+              <!-- FOOTER ITEM 1 -->
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-item footer-item-1">
+                <h3 class="footer-title footer-title-line"><i class="fa fa-twitter"></i>Последные твиты</h3>
+                {% for tweet in tweets %}
+                <div class="tweet">
+                  <div class="tweet-login"> <a href="#">{{ tweet.title }}</a> </div>
+                  <div class="tweet-text">{{ tweet.mini_description }}</div>
+                  <div class="tweet-date">{{ tweet.data }}</div>
+                </div>
+                {% endfor %}
+              </div>
+
+              <!-- FOOTER ITEM 2 -->
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-item footer-item-2">
+                <h3 class="footer-title footer-title-line"><i class="fa fa-clock-o"></i> График работы </h3>
+                {% for opening in openings%}
+                <div class="opening-left">
+                  {{ opening.title }}<br>
+                </div>
+                <div class="opening-right">
+                  {{ opening.time_from }} {{ opening.mini_description }} {{ opening.time_before }}<br>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-copyright">
+                <div> Copyright &copy; 2016 <a href="https://themeforest.net/item/dentalclinic-responsive-clinic-html-template/17390217" target="_blank">DentalClinic</a> Template by <a href="http://fvdthemes.com/" target="_blank">FVD Themes</a> </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOOTER ITEM 3 -->
+          {% for contact in contacts %}
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-item footer-item-3 footer-matchheight" id="footer-item-3">
+            <h3 class="footer-title"><i class="fa fa-map-marker"></i> КОНТАКТЫ </h3>
+            <div class="footer-item-3-phone"> <i class="fa fa-phone"></i>{{ contact.phone }}</div>
+            <div class="footer-item-3-location"> <i class="flaticon-navigation-arrow"></i>{{ contact.address }}</div>
+            <div class="footer-item-3-mail"> <i class="fa fa-envelope"></i> <a href="{{ contact.email_ssylka }}">{{ contact.email }}</a> </div>
+            <div class="footer-item-3-socials">
+              <a href="{{ contact.facebook }}"><i class="fa fa-facebook"></i></a>
+              <a href="{{ contact.google }}"><i class="fa fa-google-plus"></i></a>
+              <a href="{{ contact.twitter }}"><i class="fa fa-twitter"></i></a>
+              <a href="{{ contact.skype }}"><i class="fa fa-skype"></i></a>
+            </div>
+          </div>
+          {% endfor %}
+
+          <!-- FOOTER ITEM 4 -->
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 footer-item footer-item-4 footer-matchheight" id="footer-item-4"> </div>
+        </div>
+      </div>
+    </div>
+    <!-- =========================
+        END FOOTER
+    ============================== -->
+
+    <!-- =========================
+        POPUP FORMS
+    ============================== -->
+    {% for doctor in doctors %}
+    <div class="bookform  bookform-1" id="bookform{{ doctor.id }}">
+      <div class="bookform-left">
+        <h2 class="section-title">
+          <span class="bold700">
+            Записаться на врачу
+          </span>
+        </h2>
+        <form class="bookform-form" action="" method="post">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+              <input type="text" name="name" id="name" data-validation="required" placeholder="Ваше имя" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item phone">
+              <input type="text" name="phone" id="phone" data-validation="required" placeholder="Телефон" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email">
+              <input type="text" name="email" id="email" placeholder="Эл. почта" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+              <input type="text" class="datepicker-f" id="datepicker" name="date" data-validation="required" placeholder="Дата" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item time-f">
+              <input type="text" class="timepicker-f" id="timepicker" name="time" data-validation="required" placeholder="Время" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+              <textarea name="message" id="message" placeholder="Твое собщение.."></textarea>
+            </div>
+          </div>
+          <div class="row" style="display:none;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item honeypot">
+              <label class="fl_label">Honeypot:</label>
+              <input type="text" name="last" value="" class="form-control fl_input">
+            </div>
+          </div>
+          <div class="row latest-row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+              <button class="btn btn-primary">
+                SUBMIT
+              </button>
+              <a class="fb-close" id="fb-close" href="javascript:jQuery.fancybox.close();">Cancel</a>
+            </div>
+          </div>
+          <div class="form-messages form-messages-modal"></div>
+        </form>
+      </div>
+      <div class="bookform-right">
+        <div class="doctor-info">
+          <div class="doctor-info-image"> <img src="/media/{{ doctor.logo }}" alt="" /> </div>
+          <div class="doctor-info-name"> {{ doctor.last_name }} {{ doctor.first_name }} </div>
+          <div class="doctor-info-position"> {{ doctor.position }}</div>
+          <div class="doctor-info-hours-title"> График работы </div>
+          <div class="doctor-info-hours">
+            <div class="doctor-info-hours-clock"> <img src="static/images/clock.png" alt="" /> </div>
+            {% for opening in openings %}
+            <div class="doctor-info-hours-left">
+              {{ opening.title }}
+            </div>
+            <div class="doctor-info-hours-right">
+              {{ opening.time_from }} {{ opening.mini_description }} {{ opening.time_before }}<br>
+            </div>
+            {% endfor %}
+
+
+          </div>
+            <div class="doctor-info-desc">{{ doctor.info_description }}</div>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+
+
+    <div class="bookform  bookform-1" id="bookformtop">
+      <div class="bookform-left">
+        <h2 class="section-title">
+          <span class="bold700">
+            Записаться на врачу
+          </span>
+        </h2>
+        <form class="bookform-form" action="" method="post" style="background: #f1f8f9;">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item f-doctor">
+                <select id="form-doctor" class="form-doctor selectBox" name="form-doctor" style="display: none;">
+                  <option value="Not selected" selected="selected">Выберите врача</option>
+                  {% for doctor in doctors %}
+                  <option value="{{ doctor.last_name }} {{ doctor.first_name }}">{{ doctor.last_name }} {{ doctor.first_name }}</option>
+                  {% endfor %}
+                </select>
+
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+              <input type="text" name="name" id="name2" data-validation="required" placeholder="Your name" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item phone">
+              <input type="text" name="phone" id="phone2" data-validation="required" placeholder="Phone" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item email">
+              <input type="text" name="email" id="email2" placeholder="E-mail" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+              <input type="text" class="datepicker-f" id="datepicker2" name="date" data-validation="required" placeholder="Date" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item time-f">
+              <input type="text" class="timepicker-f" id="timepicker2" name="time" data-validation="required" placeholder="Time" />
+              <div class="help help-sm help-red">!</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+              <textarea name="message" id="message2" placeholder="Your message.."></textarea>
+            </div>
+          </div>
+          <div class="row" style="display:none;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item honeypot">
+              <label class="fl_label">Honeypot:</label>
+              <input type="text" name="last" value="" class="form-control fl_input">
+            </div>
+          </div>
+          <div class="row latest-row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+              <button class="btn btn-primary">
+                SUBMIT
+              </button>
+              <a class="fb-close" id="fb-close2" href="javascript:jQuery.fancybox.close();">Cancel</a>
+            </div>
+          </div>
+          <div class="form-messages form-messages-modal"></div>
+        </form>
+      </div>
+      <div class="bookform-right" style="padding: 115px 35px 0 0;">
+    <div class="bookform-right-info-1">
+      <h5>Пожалуйста, выберите врача</h5>
+      Парам парам парам Парам парам парам Парам парам парам Парам парам парам</div>
+    <div class="bookform-right-info-2">Парам парам парам Парам парам парам Парам парам парам Парам парам парамПарам парам парам Парам парам парам Парам парам парам Парам парам парам</div>
+  </div>
+
+      </div>
+
+
+      </div>
+    </div>
+
+
+
+    <!-- =========================
+        END POPUP FORMS
+    ============================== -->
+
+    <!-- =========================
+        COLOR SWITHER
+    ============================== -->
+
+    <div class="color-sw" id="color-sw">
+      <div class="color-sw-header"> Style switcher
+        <span class="color-sw-close" id="color-sw-close">
+          <i class="fa fa-close"></i>
+        </span>
+      </div>
+      <div class="color-sw-body">
+        <p>Choose color style</p>
+        <div class="color-sw-item active" id="blue">
+          <div></div>
+        </div>
+        <div class="color-sw-item" id="violet">
+          <div></div>
+        </div>
+        <div class="color-sw-item" id="red">
+          <div></div>
+        </div>
+        <div class="color-sw-item" id="green">
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <!-- =========================
+        END COLOR SWITHER
+    ============================== -->
+    <div class="totop" id="totop"> <i class="fa fa-angle-up"></i> </div>
+    <link rel="stylesheet" type="text/css" href="static/css/responsive.css" />
+
+    <!-- =========================
+         SCRIPTS
+
+    ============================== -->
+    <!-- JQUERY -->
+    <script src="static/js/jquery-2.2.0.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="static/js/bootstrap.min.js"></script>
+
+    <!-- SLIDER PRO -->
+    <script src="static/js/jquery.sliderPro.min.js"></script>
+
+    <!-- LIGHTBOX -->
+    <script src="static/js/jquery.fancybox.pack.js"></script>
+
+    <!-- CAROUSEL -->
+    <script src="static/js/owl.carousel.js"></script>
+
+    <!-- STAR RATING -->
+    <script src="static/js/jquery.barrating.min.js"></script>
+
+    <!-- ISOTOPE FILTER -->
+    <script src="static/js/isotope.pkgd.min.js"></script>
+
+    <!-- SCROLLSPY -->
+    <script src="static/js/scrollspy.js"></script>
+
+    <!-- DATEPICKER -->
+    <script src="static/js/moment.js"></script>
+    <script src="static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- JQUERY FORM -->
+    <script src="static/js/jquery.form.js"></script>
+
+    <!-- FORM VALIDATOR -->
+    <script src="static/js/jquery.form-validator.js"></script>
+
+    <!-- SELECT STYLING -->
+    <script src="static/js/jquery.selectBox.js"></script>
+
+    <!-- MATCHHEIGHT -->
+    <script src="static/js/jquery.matchHeight.js"></script>
+
+    <!-- IMAGES LOADED -->
+    <script src="static/js/imagesloaded.pkgd.min.js"></script>
+
+    <!-- CUSTOM SCRIPT -->
+    <script src="static/js/theme.js"></script>
+
+    <!-- GOOGLE MAPS -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC1N87a_NHjocaepKKcovPAYTMUkJBr9pQ&amp;language=en&amp;sensor=true"></script>
+
+    <!-- registr JS -->
+    <script src="static/js/script-ali.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        $(document).ready(function(){
+            $('a[href="#collapse1"]').click();
+        })
+    </script>
+
+    </body>
+    </html>

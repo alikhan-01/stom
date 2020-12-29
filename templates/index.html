@@ -1,0 +1,592 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+
+
+            <!-- =========================
+                 HEADER SLIDER
+            ============================== -->
+
+            <div id="slider" class="slider">
+              <div class="sp-slides">
+                {% for glavniy in glavniys %}
+                <div class="sp-slide"> <img class="sp-image" src="static/css/images/blank.gif" alt=""
+                                data-src="/media/{{ glavniy.logo }}" />
+                  <div class="container">
+                    <h3 class="sp-layer slider-welcome"
+                                    data-position="leftCenter" data-horizontal="15" data-vertical="-370"
+                                    data-show-transition="left" data-hide-transition="left"
+                                    data-show-delay="0" data-hide-delay="0"> {{ glavniy.mini_description1 }} </h3>
+                    <h1 class="sp-layer slider-title"
+                                    data-position="leftCenter" data-horizontal="15" data-vertical="-230"
+                                    data-show-transition="left" data-hide-transition="left"
+                                    data-show-delay="200" data-hide-delay="200"> {{ glavniy.title }} </h1>
+                    <h2 class="sp-layer slider-subtitle"
+                                    data-position="leftCenter" data-horizontal="15" data-vertical="-120"
+                                    data-show-transition="left" data-hide-transition="left"
+                                    data-show-delay="400" data-hide-delay="400">{{ glavniy.mini_description2 }} </h2>
+                    <p class="sp-layer slider-text"
+                                    data-position="leftCenter" data-horizontal="15" data-vertical="80"
+                                    data-show-transition="left" data-hide-transition="left"
+                                    data-show-delay="600" data-hide-delay="600"> {{ glavniy.description}} </p>
+                    <p class="sp-layer slider-button"
+                                    data-position="leftCenter" data-horizontal="15" data-vertical="300"
+                                    data-show-transition="left" data-hide-transition="left"
+                                    data-show-delay="800" data-hide-delay="800"> <a href="#" class="btn btn-primary">ПОДРОБНОЕ</a> </p>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- =========================
+                 END HEADER SLIDER
+            ============================== -->
+
+
+            <!-- =========================
+                 SERVICES
+            ============================== -->
+
+            <div class="services" id="services">
+              {% for tip in tips %}
+              <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 service bg-primary-color-{{ forloop.counter }}">
+                <div class="service-icon"> <i class="flaticon-medical-{{ tip.logo_id }}"></i> </div>
+                <div class="service-title">
+                  <h3>{{ tip.title }}</h3>
+                </div>
+                <div class="service-text">{{ tip.mini_description }}</div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- =========================
+                 END SERVICES
+            ============================== -->
+
+
+            <!-- =========================
+                 ABOUT
+            ============================== -->
+            <div class="about">
+              <div class="container">
+                <div class="row">
+
+                  <!-- ABOUT TEXT -->
+                  {% for about in abouts %}
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 about-text">
+                    <h2 class="section-title">
+                      <span class="bold700">
+                      AZIZ
+                    </span>
+                    TALIPOV</h2>
+                    <p>{{ about.description }}</p>
+                     <ul class="text-list">
+                          <li>{{ about.quote_1 }}</li>
+                          <li>{{ about.quote_2 }}</li>
+                          <li>{{ about.quote_3 }}</li>
+                     </ul>
+                    <p>{{ about.mini_description }}<a href="#">Подробно &gt;</a></p>
+                  </div>
+
+                  <!-- ABOUT BACKGROUND -->
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 about-bg"> </div>
+                  <style type="text/css">
+                    .about-bg {
+                    background: url('{{ MEDIA_URL }}media/{{ about.logo }}') center center no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                  }
+                  </style>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                 END ABOUT
+            ============================== -->
+
+
+            <!-- =========================
+                 CERTIFICATES
+            ============================== -->
+
+            <div class="certs">
+              <div class="container">
+                <div class="row">
+                  <h3>Сертификат об окончании</h3>
+                  <div class="certs-container">
+
+                    <div class="owl-certs" id="owl-certs">
+                      {% for certificate in certificates %}
+                      <!-- CERTIFICATES ITEM -->
+                      <div class="certs-item">
+                        <a href="/media/{{ certificate.logo_in }}" class="fancybox">
+                          <img src="/media/{{ certificate.logo }}" alt="" />
+                        </a>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <!-- CERTIFICATES BUTTONS -->
+                    <div class="carousel-btn carousel-next" id="next-certs"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-certs"><i class="fa fa-angle-left"></i></div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- =========================
+                 END CERTIFICATES
+            ============================== -->
+
+
+            <!-- =========================
+                 DOCTORS
+            ============================== -->
+
+            <div class="doctors">
+              <div class="container">
+                <div class="row">
+                  <h2 class="section-title">ВСТРЕЧАЙТЕ
+                    <span class="bold700">
+                    НАШИХ ВРАЧЕЙ
+                    </span>
+                  </h2>
+                  {% for information in informations %}
+                  <p class="section-subtitle" style="width: 72%;
+                                                     margin: 0 auto;
+                                                     font-size: 15px;
+                                                     margin-bottom: 60px;"> {{ information.meet_description }}</p>
+                  {% endfor %}
+                  <div class="doctors-container">
+
+                    <div class="owl-doctors" id="owl-doctors">
+
+
+                     {% for doctor in doctors %}
+                      <div class="doctors-item">
+                        <div class="doctors-item-container">
+                          <div class="doctors-item-image"> <img src="/media/{{ doctor.logo }}" alt="" /> </div>
+                          <div class="doctors-item-name">{{ doctor.last_name }} {{ doctor.first_name}}</div>
+                          <div class="doctors-item-position">{{ doctor.position}}</div>
+                        </div>
+                        <div class="doctors-item-social"> <a href="{{ doctor.facebook }}"><i class="fa fa-facebook"></i></a> <a href="{{ doctor.twitter }}"><i class="fa fa-twitter"></i></a> <a href="{{ doctor.skype }}"><i class="fa fa-skype"></i></a> </div>
+                        <div class="doctors-item-button"> <a href="#bookform{{ doctor.id }}" class="fancybox-1 btn btn-default">
+                            <span class="plus">
+                              +
+                            </span>
+                            Онлайн запись к врачу</a>
+                        </div>
+                      </div>
+                      {% endfor %}
+
+
+                    </div>
+                    <!-- DOCTORS BUTTONS -->
+                    <div class="carousel-btn carousel-next" id="next-doctors"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-doctors"><i class="fa fa-angle-left"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- =========================
+                 END DOCTORS
+            ============================== -->
+
+
+            <!-- =========================
+                 BOOKING FORM
+            ============================== -->
+            <div class="booking">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form">
+                    <h2 class="section-title">
+                      <span class="bold700">
+                        НАШИ ВРАЧИ
+                      </span>
+                    </h2>
+                    <!-- //sendmail-book.php-->
+                    <form  id="request" class="bookform-form" method="post">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
+                          <input type="text" name="name" id="name" data-validation="required" placeholder="Ваше имя" />
+                          <div class="help help-sm help-red">!</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item phone">
+                          <input type="text" name="phone" id="phone" data-validation="required" placeholder="Телефон" />
+                          <div class="help help-sm help-red">!</div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item email">
+                          <input type="text" name="email" id="email" placeholder="Эл. почта" />
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item date">
+                          <input type="text" class="datepicker-f" id="datepicker" name="date" data-validation="required" placeholder="Дата" />
+                          <div class="help help-sm help-red">!</div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form-item time-f">
+                          <input type="text" class="timepicker-f" id="timepicker" name="time" data-validation="required" placeholder="Время" />
+                          <div class="help help-sm help-red">!</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item">
+                          <textarea name="message" id="message" placeholder="Твое сообщение.."></textarea>
+                        </div>
+                      </div>
+                      <div class="row" style="display:none;">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item honeypot">
+                          <label class="fl_label">Honeypot:</label>
+                          <input type="text" name="last" value="" class="form-control fl_input">
+                        </div>
+                      </div>
+                      <div class="row latest-row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 booking-form-item">
+                          <button type="submit"    class="btn btn-primary">
+                            Записаться
+                          </button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 booking-form-item">
+                          <div class="help t-tooltip t-left"> ?
+                            <div class="tt-row-item-active-hover"></div>
+                            <div class="t-tooltip-text">
+                              <div class="t-tooltip-text-body"> жизнеспособность, так что труд и горе, некоторые важные дела, которые нужно делать<br>
+                                <a href="#" class="btn btn-primary-1 btn-sm">ЧИТАТЬ БОЛЬШЕ</a> </div>
+                              <div class="t-tooltip-text-hover"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-messages"></div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                 END BOOKING FORM
+            ============================== -->
+
+
+            <!-- =========================
+                 NUMBERS
+            ============================== -->
+            <div class="numbers" id="numbers">
+              <div class="numbers-overlay">
+                <div class="container">
+                  <div class="row">
+                    <h2 class="section-title">
+                      <span class="bold700">
+                        Опыт
+                      </span>
+                      в цифрах</h2>
+                    {% for information in informations %}
+                    <p class="section-subtitle" style="width: 72%;
+                                                     margin: 0 auto;
+                                                     font-size: 15px;
+                                                     margin-bottom: 60px;">{{ information.number_description }}</p>
+                    {% endfor %}
+                    <!-- NUMBERS ITEM -->
+                    {% for prize in prizes %}
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 numbers-item">
+                      <div id="num{{ forloop.counter }}" class="numbers-item-number">{{ prize.number }}</div>
+                      <div class="numbers-item-title">{{ prize.title }}</div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                 END NUMBERS
+            ============================== -->
+
+
+            <!-- =========================
+                 STORIES
+            ============================== -->
+            <div class="stories">
+              <div class="container">
+                <div class="row">
+                  <h2 class="section-title">
+                    <span class="bold700">
+                      ИСТОРИИ
+                    </span>
+                    УСПЕХА</h2>
+                  {% for information in informations %}
+                  <p class="section-subtitle">{{ information.success_description }}</p>
+                  {% endfor %}
+                  <div class="certs-container">
+                    <div class="owl-stories" id="owl-stories">
+                      {% for success in successs %}
+                      <!-- STORIES ITEM -->
+                      <div class="stories-item">
+
+                        <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12">
+
+                          <div class="stories-item-name">{{ success.last_name }} {{ success.first_name }}</div>
+                          <div class="stories-item-position"> {{ success.position }} </div>
+                          <div class="stories-item-rating">
+                            <select id="stories-rating-{{ forloop.counter }}" name="stories-rating-{{ forloop.counter }}">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                          <div class="stories-item-text">
+                            <div class="stories-item-text-quote"><img src="/media/{{ success.mini_logo }}" alt="" /></div>
+                            {{ success.description }}
+                          </div>
+                          <div class="stories-item-desc">
+                            {{ success.mini_description }}
+                            <ul>
+                              <li>{{ success.job_1 }}</li>
+                              <li>{{ success.job_2 }}</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                          <div class="stories-item-before"> <img src="/media/{{ success.logo_left }}" alt="" />
+                            <div class="stories-item-before-title"> BEFORE </div>
+                          </div>
+                          <div class="stories-item-after"> <img src="/media/{{ success.logo_right }}" alt="" />
+                            <div class="stories-item-after-title"> AFTER </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      {% endfor %}
+
+                    </div>
+                    <div class="carousel-btn carousel-next" id="next-stories"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-stories"><i class="fa fa-angle-left"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                END STORIES
+            ============================== -->
+
+
+            <!-- =========================
+                REVIEW
+            ============================== -->
+            <div class="review">
+              <div class="container">
+                <div class="row">
+                  <h2 class="section-title">
+                    <span class="bold700">
+                      ОТЗЫВЫ
+                    </span>
+                  </h2>
+                  {% for information in informations %}
+                  <p class="section-subtitle" style="width: 75%;
+                                                     margin: 0 auto;
+                                                     font-size: 15px;
+                                                     margin-bottom: 60px;">{{ information.testimonial_description }}</p>
+                  {% endfor %}
+                  <div class="review-container">
+                    <div class="owl-review" id="owl-review">
+
+                      {% for test in tests %}
+                      <!-- REVIEW ITEM -->
+                      <div class="review-item">
+                        <div class="review-item-image"> <img src="/media/{{ test.logo }}" alt="" /> </div>
+                        <div class="review-item-text">{{ test.description }}</div>
+                        <div class="review-item-name">{{ test.last_name }} {{ test.first_name }}</div>
+                        <div class="review-item-position">{{ test.position }}</div>
+                        <div class="review-item-quote"><img src="/media/{{ test.mini_logo }}" alt="" /></div>
+                      </div>
+                      {% endfor %}
+
+                    </div>
+                    <!-- REVIEW BUTTONS -->
+                    <div class="carousel-btn carousel-next" id="next-review"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-review"><i class="fa fa-angle-left"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                END REVIEW
+            ============================== -->
+
+
+            <!-- =========================
+                BLOG
+            ============================== -->
+            <div class="blog">
+              <div class="container">
+                <div class="row">
+                  <h2 class="section-title">ПОСЛЕДНИЕ
+                    <span class="bold700">
+                      НОВОСТИ
+                    </span>
+                  </h2>
+                  {% for information in informations %}
+                  <p class="section-subtitle" style="width: 82%;
+                                                     margin: 0 auto;
+                                                     font-size: 15px;
+                                                     margin-bottom: 60px;">{{ information.latest_description }}</p>
+                  {% endfor %}
+                  <div class="blog-container">
+                    <div class="owl-blog" id="owl-blog">
+
+                      {% for latest in latests %}
+                      <!-- BLOG ITEM -->
+                      <div class="blog-item">
+                        <div class="blog-item-image"> <img src="/media/{{ latest.logo }}" alt="" />
+                          <div class="blog-item-date"><i class="fa fa-calendar-o"></i>{{ latest.data }}</div>
+                          <div class="blog-item-comments"><i class="fa fa-comments-o"></i>{{ latest.comment }}</div>
+                        </div>
+                        <div class="blog-item-title">
+                          <h3><a href="#">{{ latest.title }}</a></h3>
+                        </div>
+                        <div class="blog-item-author"><a href="#">{{ latest.name_author }}</a></div>
+                        <div class="blog-item-text">{{ latest.description }}</div>
+                        <div class="blog-item-button"><a href="#" class="btn btn-primary-1">ЧИТАТЬ БОЛЬШЕ</a></div>
+                      </div>
+                      {% endfor %}
+
+                    </div>
+                    <!-- BLOG BUTTONS -->
+                    <div class="carousel-btn carousel-next" id="next-blog"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-blog"><i class="fa fa-angle-left"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                END BLOG
+            ============================== -->
+
+
+            <!-- =========================
+                TIPS AND FAQ
+            ============================== -->
+            <div class="tipsfaq">
+              <div class="container">
+                <div class="row">
+
+                  <!-- TIPS -->
+                  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 tips">
+                    <h2 class="section-title">
+                      <span class="bold700">
+                         СОВЕТЫ
+                      </span>
+                      ОТ ВРАЧЕЙ</h2>
+                    <!-- TIPS NAVS -->
+                    <div class="tips-tabs">
+                      <ul class="nav nav-tabs tabs-carousel">
+                        {% for staff in staffs %}
+                        <li  data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %} active {% endif %}">
+                          <a href="#tips{{ forloop.counter }}" data-toggle="tab">{{ staff.title }}</a>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                      <div class="tips-btn tips-next" id="next-tips"><i class="fa fa-angle-right"></i></div>
+                      <div class="tips-btn tips-prev" id="prev-tips"><i class="fa fa-angle-left"></i></div>
+                    </div>
+                    <!-- TIPS ITEMS -->
+                    <div class="tips-content">
+                      <div class="tab-content">
+
+                        {% for staff in staffs %}
+                        <!-- TIPS ITEM -->
+                        <div class="tab-pane fade in tips-content-item {% if forloop.counter0 == 0 %} active {% endif %}" id="tips{{ forloop.counter }}">
+                          <div class="tips-content-item-text">
+                            <p>{{ staff.mini_description }}</p>
+                            <p>{{ staff.description }}</p>
+                            <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">ЧИТАТЬ БОЛЬШЕ</a> </div>
+                          </div>
+                          <div class="tips-content-item-image"> <img src="/media/{{ staff.logo }}" alt="" />
+                            <div class="tips-content-item-name"> <a href="#">{{ staff.last_name }} {{ staff.first_name }}</a> </div>
+                            <div class="tips-content-item-position">{{ staff.position }}</div>
+                          </div>
+                        </div>
+                        {% endfor %}
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- FAQ -->
+                  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 faq">
+                    <h2 class="section-title">
+                      <span class="bold700">
+                        FAQ
+                      </span>
+                    </h2>
+                    <div class="panel-group" id="accordion">
+                      <!-- FAQ ITEM -->
+
+                      {% for faq in faqs %}
+                      <div class="panel panel-default" >
+                        <div class="panel-heading" >
+                          <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}">
+                            <i class="fa fa-{{ faq.icon }}"></i>
+                            {{ faq.title }} </a>
+                          </h4>
+                        </div>
+                        <div id="collapse{{ forloop.counter }}" data-slide-to="{{ forloop.counter0 }}" class="panel-collapse collapse {% if forloop.counter0 == 1 %} active {% endif %}">
+                          <div class="panel-body">{{ faq.description }}</div>
+                        </div>
+                      </div>
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- =========================
+                END TIPS AND FAQ
+            ============================== -->
+
+
+            <!-- =========================
+                CLIENTS
+            ============================== -->
+            <div class="clients">
+              <div class="container">
+                <div class="row">
+                  <p class="section-subtitle">КОМПАНИИ-ПАРТНЕРЫ</p>
+                  <div class="clients-container">
+                    <div class="owl-clients" id="owl-clients">
+
+                      {% for partner in partners %}
+                      <!-- CLIENTS ITEM -->
+                      <div class="clients-item"> <img src="/media/{{ partner.logo }}" alt="" /> </div>
+                      {% endfor %}
+
+                    </div>
+
+                    <!-- CLIENTS BUTTONS -->
+                    <div class="carousel-btn carousel-next" id="next-clients"><i class="fa fa-angle-right"></i></div>
+                    <div class="carousel-btn carousel-prev" id="prev-clients"><i class="fa fa-angle-left"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!-- =========================
+    END CLIENTS
+============================== -->
+    {% endblock %}
+

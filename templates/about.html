@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+
+
+
+<div class="history">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 history-images">
+				<div class="image-carousel">
+
+					<div class="owl-image-carousel" id="owl-image-carousel">
+						{% for history_img in history_imgs %}
+						<div class="image-carousel-item"> <img src="/media/{{ history_img.logo }}" alt="" /> </div>
+						{% endfor %}
+					</div>
+
+					<div class="carousel-btn carousel-next" id="next-image-carousel"><i class="fa fa-angle-right"></i></div>
+					<div class="carousel-btn carousel-prev" id="prev-image-carousel"><i class="fa fa-angle-left"></i></div>
+				</div>
+			</div>
+			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 history-text">
+				<h3>ИСТОРИЯ</h3>
+				{% for history in historys %}
+				<p>{{ history.description }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- =========================
+     CERTIFICATES
+============================== -->
+<div class="certs">
+	<div class="container">
+		<div class="row">
+			<h3>Сертификат об окончании</h3>
+			<div class="certs-container">
+				<div class="owl-certs" id="owl-certs">
+                      {% for certificate in certificates %}
+                      <!-- CERTIFICATES ITEM -->
+                      <div class="certs-item">
+                        <a href="/media/{{ certificate.logo_in }}" class="fancybox">
+                          <img src="/media/{{ certificate.logo }}" alt="" />
+                        </a>
+                      </div>
+                      {% endfor %}
+				</div>
+				<!-- CERTIFICATES BUTTONS -->
+				<div class="carousel-btn carousel-next" id="next-certs"><i class="fa fa-angle-right"></i></div>
+				<div class="carousel-btn carousel-prev" id="prev-certs"><i class="fa fa-angle-left"></i></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- =========================
+     END CERTIFICATES
+============================== --> 
+
+<div class="mission">
+	<div class="container">
+		<div class="row">
+			{% for mission in missions %}
+			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 mission-text">
+				<h3>НАША МИССИЯ</h3>
+				<p>{{ mission.description }}</p>
+				<ul class="text-list">
+					<li>{{ mission.description_1 }}</li>
+					<li>{{ mission.description_2 }}</li>
+					<li>{{ mission.description_3 }}</li>
+					<li>{{ mission.description_4 }}</li>
+				</ul>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 mission-video">
+				<iframe width="457" height="314" src="{{ mission.youtube }}" allowfullscreen></iframe>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="tipsfaq">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 tips">
+				<h2 class="section-title">
+					<span class="bold700">ПОЧЕМУ ВЫБРАЛИ НАС?</span>
+				</h2>
+
+				<div class="tips-tabs">
+					<ul class="nav nav-tabs tabs-carousel">
+						{% for why_about in why_abouts %}
+						<li data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %} active {% endif %}">
+							<a href="#tips{{ forloop.counter }}" data-toggle="tab">{{ why_about.title }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+					<div class="tips-btn tips-next" id="next-tips"><i class="fa fa-angle-right"></i></div>
+					<div class="tips-btn tips-prev" id="prev-tips"><i class="fa fa-angle-left"></i></div>
+				</div>
+				<div class="tips-content">
+					<div class="tab-content">
+						{% for why_about in why_abouts %}
+						<div class="tab-pane fade in tips-content-item {% if forloop.counter0 == 0 %} active {% endif %}" id="tips{{ forloop.counter }}">
+							<p>{{ why_about.description }}</p>
+							<ul class="text-list">
+								<li>{{ why_about.description_1 }}</li>
+								<li>{{ why_about.description_2 }}</li>
+								<li>{{ why_about.description_3 }}</li>
+								<li>{{ why_about.description_4 }}</li>
+							</ul>
+							<div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">Услуги</a></div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+				<h2 class="section-title">
+					<span class="bold700">ОТЗЫВЫ</span>
+				</h2>
+				<div class="review-container">
+					<div class="owl-review2" id="owl-review2">
+						{% for test in tests %}
+						{% if forloop.counter|divisibleby:2 == 0 %}
+						<div>{% endif %}
+								  <!-- REVIEW ITEM -->
+								  <div class="review-item">
+									<div class="review-item-image"> <img src="/media/{{ test.logo }}" alt="" /> </div>
+									<div class="review-item-text">{{ test.description }}</div>
+									<div class="review-item-name">{{ test.last_name }} {{ test.first_name }}</div>
+									<div class="review-item-position">{{ test.position }}</div>
+									<div class="review-item-quote"><img src="/media/{{ test.mini_logo }}" alt="" /></div>
+								  </div>
+						{% if forloop.counter|divisibleby:2 == 1 %}
+						</div>{% endif %}
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="make">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 make-text">
+				<h2>ЗАПИСАТЬСЯ НА ПРИЕМ</h2>
+				{% for information in informations %}
+				<p>{{ information.make_about_description }}</p>
+				{% endfor %}
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 make-button"> <a href="#bookformtop" class="fancybox-2 btn btn-default">
+				<span class="plus">+</span>
+				Записаться на прием</a> </div>
+		</div>
+	</div>
+</div>
+ {% endblock %}
+
