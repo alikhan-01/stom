@@ -149,6 +149,25 @@ class Why_aboutAdmin(admin.ModelAdmin):
 admin.site.register(Why_about,Why_aboutAdmin)
 
 
+##################################
+class ServiceAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Service,ServiceAdmin)
+
+
+##################################
+class ProjectTypeAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(ProjectType,ProjectTypeAdmin)
+
+
+##################################
+class ProjectItemAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(ProjectItem,ProjectItemAdmin)
 
 
 # Register your models here.

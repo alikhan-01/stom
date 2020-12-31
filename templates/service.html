@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+
+
+
+<div class="page-title page-title-services bg-pattern" data-bgcolor="2791AA">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Услуги</h1>
+      {%for information in informations %}
+      <p>{{ information.service_mini_description }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li class="active">Услуги</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="services-1" id="services">
+  <div class="container">
+    <div class="row">
+      {% for information in informations %}
+      <p class="services-1-text">{{ information.service_item_description }}</p>
+      {% endfor %}
+      {% for information in informations %}
+      <h3 class="services-1-title">{{ information.service_title_description }}</h3>
+      {% endfor %}
+
+      {% for service in services %}
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 service">
+        <div class="service-icon"> <i class="flaticon-{{ service.icon }}"></i> </div>
+        <div class="service-title">
+          <h3>{{ service.title }}</h3>
+        </div>
+        <div class="service-text">{{ service.description }}</div>
+      </div>
+      {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+<div class="serv">
+  <ul id="isotope-filter">
+    <li><a class="active" data-filter="*">Все услуги</a></li>
+    {% for type in types %}
+    <li><a data-filter=".dental-{{ type.title }}">{{ type.title }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="container">
+    <div class="row">
+      <div class="serv-items" id="isotope-items">
+        {% for project in projects %}
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 serv-item isotope-item dental-{{ project.type }}">
+          <div class="serv-item-image"> <img src="media/{{ project.logo}}" alt="" /> </div>
+          <div class="serv-item-text">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description_1 }}</p>
+            <p>{{ project.description_2 }} </p>
+            <div class="serv-item-button">
+              <div class="serv-item-tag">{{ project.type }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <ul class="pagination">
+        <li><a class="first" href="#"><i class="fa fa-angle-left"></i></a></li>
+        <li><a class="active">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a class="last" href="#"><i class="fa fa-angle-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    {% endblock %}

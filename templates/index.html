@@ -53,7 +53,7 @@
             <div class="services" id="services">
               {% for tip in tips %}
               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 service bg-primary-color-{{ forloop.counter }}">
-                <div class="service-icon"> <i class="flaticon-medical-{{ tip.logo_id }}"></i> </div>
+                <div class="service-icon"> <i class="flaticon-{{ tip.icon }}"></i> </div>
                 <div class="service-title">
                   <h3>{{ tip.title }}</h3>
                 </div>

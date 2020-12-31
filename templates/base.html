@@ -91,7 +91,7 @@
                 <span class="plus">
                   +
                 </span>
-                Записаться да </a> </div>
+                Записаться </a> </div>
             {% for contact in contacts %}
             <div class="header-phone"> <i class="fa fa-phone"></i> {{ contact.phone }} </div>
             {% endfor %}
@@ -129,19 +129,8 @@
             <ul class="nav navbar-nav">
               <li {% if page == 'index' %} class="active" {% endif %} ><a href="/" >Главная</a></li>
               <li {% if page == 'about' %} class="active" {% endif %} ><a href="/about" >О нас</a></li>
-              <li class="dropdown" {% if page == 'about' %} class="active" {% endif %} > <a data-toggle="dropdown" href="/services" >Услуги</a>
-                <ul class="dropdown-menu with-bg" role="menu">
-                  <li><a href="services.html">Oral exams</a></li>
-                  <li><a href="services.html">Teeth whitening</a></li>
-                  <li><a href="services.html">Teeth cleaning</a></li>
-                  <li><a href="services.html">X-rays</a></li>
-                  <li><a href="services.html">Crowns</a></li>
-                  <li><a href="services.html">Fillings and bridges</a></li>
-                  <li><a href="services.html">Implants</a></li>
-                  <li><a href="services.html">Extractions</a></li>
-                  <li><a href="services.html">Root canals</a></li>
-                  <li><a href="services.html">Surgical implant placements</a></li>
-                </ul>
+              <li {% if page == 'service' %} class="active" {% endif %} ><a href="/service" >Услуги</a>
+
               </li>
               <li class="dropdown"> <a data-toggle="dropdown" href="/about" {% if page == 'about' %} class="menu-active" {% endif %} >Наша команда</a>
                 <ul class="dropdown-menu" role="menu">

@@ -3,7 +3,26 @@
 
 	{% block content %}
 			{% load static %}
-
+<div class="page-title page-title-about bg-pattern" data-bgcolor="5295BD" style="background-color: #5295BD !important">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1> О нас </h1>
+		{% for information in informations %}
+      <p>{{ information.about_mini_description }}</p>
+		{% endfor %}
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li class="active"> О нас </li>
+      </ol>
+    </div>
+  </div>
+</div>
 
 
 <div class="history">
@@ -23,6 +42,7 @@
 				</div>
 			</div>
 			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 history-text">
+
 				<h3>ИСТОРИЯ</h3>
 				{% for history in historys %}
 				<p>{{ history.description }}</p>

@@ -514,7 +514,7 @@ function initialize() {
 	}
 
 	/* ==== MARKER IMAGE ====*/
-	var image = 'images/marker.png';
+	var image = 'static/images/marker.png';
 	
 	/* ==== SET MARKER ====*/
 	var marker = new google.maps.Marker({

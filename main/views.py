@@ -2,6 +2,7 @@ from django.shortcuts import render
 from main.models import *
 from main.models import Glavniy,Tip,About,Certificate,Doctor,Register,Prize,Faq,Why_about
 from main.models import Success,Test,Latest,Staff,Partner,Contact,Opening,Information,History,History_img,Mission
+from main.models import Service,ProjectType,ProjectItem
 from django.http.response import JsonResponse
 # Create your views here.
 
@@ -96,3 +97,23 @@ def aboutHandler(request):
                                           })
 
 
+def serviceHandler(request):
+    page = 'service'
+    contacts = Contact.objects.filter(status=0)
+    openings = Opening.objects.filter(status=0)
+    tweets = Tweet.objects.filter(status=0)[:3]
+    informations = Information.objects.filter(status=0)
+    services = Service.objects.filter(status=0)
+    types = ProjectType.objects.filter(status=0)
+    projects = ProjectItem.objects.all()
+    
+
+    return render(request, 'service.html', {'page':page,
+                                          'contacts': contacts,
+                                          'openings': openings,
+                                          'tweets': tweets,
+                                          'informations': informations,
+                                          'services':services,
+                                          'types': types,
+                                          'projects': projects
+                                          })

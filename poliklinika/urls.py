@@ -18,10 +18,11 @@ from django.urls import path
 from django.conf.urls import url
 from django.views.static import serve
 from poliklinika import settings
-from main.views import indexHandler,aboutHandler
+from main.views import indexHandler,aboutHandler,serviceHandler
 
 urlpatterns = [
     path('about', aboutHandler),
+    path('service', serviceHandler),
 
 
 

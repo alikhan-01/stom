@@ -19,7 +19,7 @@ class Glavniy(models.Model):
 
 
 class Tip(models.Model):
-    logo_id = models.IntegerField(default=0,blank=True)
+    icon = models.CharField(max_length=300)
     title = models.CharField(max_length=300)
     mini_description = models.CharField(max_length=300)
     rating = models.IntegerField(default=0)
@@ -212,12 +212,15 @@ class Tweet(models.Model):
 
 class Information(models.Model):
     title = models.CharField(max_length=300,blank=True)
-    meet_description = models.CharField(max_length=300, blank=True)
-    number_description = models.CharField(max_length=300, blank=True)
-    success_description = models.CharField(max_length=300, blank=True)
-    testimonial_description = models.CharField(max_length=300, blank=True)
-    latest_description = models.CharField(max_length=300, blank=True)
-    make_about_description = models.CharField(max_length=300, blank=True)
+    meet_description = models.TextField(blank=True)
+    number_description = models.TextField(blank=True)
+    success_description = models.TextField(blank=True)
+    testimonial_description = models.TextField(blank=True)
+    latest_description = models.TextField(blank=True)
+    about_mini_description = models.TextField(blank=True)
+    service_mini_description = models.TextField(blank=True)
+    service_item_description = models.TextField(blank=True)
+    service_title_description = models.TextField(blank=True)
     status = models.IntegerField(default=0)
 
     def __str__(self):
@@ -226,7 +229,7 @@ class Information(models.Model):
 
 class History(models.Model):
     title = models.CharField(max_length=300,blank=True)
-    description = models.TextField( blank=True)
+    description = models.TextField(blank=True)
     status = models.IntegerField(default=0)
 
     def __str__(self):
@@ -266,6 +269,36 @@ class Why_about(models.Model):
     description_4 = models.CharField(max_length=300, blank=True)
     rating = models.IntegerField(default=0)
     status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class Service(models.Model):
+    icon = models.CharField(max_length=300, blank=True)
+    title = models.CharField(max_length=300, blank=True)
+    description = models.TextField(blank=True)
+    rating = models.IntegerField(default=0)
+    status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class ProjectType(models.Model):
+    title = models.CharField(max_length=300, blank=True)
+    status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class ProjectItem(models.Model):
+    title = models.CharField(max_length=300, blank=True)
+    description_1 = models.CharField(max_length=300)
+    description_2 = models.CharField(max_length=300)
+    type = models.ForeignKey(ProjectType, on_delete=models.CASCADE)
+    logo = models.ImageField(upload_to='upload')
 
     def __str__(self):
         return self.title
