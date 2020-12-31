@@ -106,7 +106,7 @@ def serviceHandler(request):
     services = Service.objects.filter(status=0)
     types = ProjectType.objects.filter(status=0)
     projects = ProjectItem.objects.all()
-    
+
 
     return render(request, 'service.html', {'page':page,
                                           'contacts': contacts,
