@@ -18,15 +18,11 @@ from django.urls import path
 from django.conf.urls import url
 from django.views.static import serve
 from poliklinika import settings
-from main.views import indexHandler,aboutHandler,serviceHandler
+from main.views import indexHandler,aboutHandler,serviceHandler, page404Handler
 
 urlpatterns = [
     path('about', aboutHandler),
     path('service', serviceHandler),
-
-
-
-
 
 
    url(r'^media/(?P<path>.*)$', serve,{
@@ -34,4 +30,6 @@ urlpatterns = [
     }),
     path('admin/', admin.site.urls),
     path('', indexHandler),
+
+    path('404', page404Handler),
 ]

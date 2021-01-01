@@ -66,7 +66,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 serv-item isotope-item dental-{{ project.type }}">
           <div class="serv-item-image"> <img src="media/{{ project.logo}}" alt="" /> </div>
           <div class="serv-item-text">
-            <h3>{{ project.title }}</h3>
+            <h3>{{ project.title }} </h3>
             <p>{{ project.description_1 }}</p>
             <p>{{ project.description_2 }} </p>
             <div class="serv-item-button">
@@ -77,11 +77,21 @@
         {% endfor %}
       </div>
       <ul class="pagination">
-        <li><a class="first" href="#"><i class="fa fa-angle-left"></i></a></li>
-        <li><a class="active">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a class="last" href="#"><i class="fa fa-angle-right"></i></a></li>
+        {% if p != 1 %}
+        <li><a class="first" href="/service?limit={{ limit }}&p={{ prev_p }}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+
+        {% for x in page_range %}
+          {% if p == x %}
+          <li><a class="active">{{ x }}</a></li>
+          {% else %}
+          <li><a href="/service?limit={{ limit }}&p={{ x }}">{{ x }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if p < page_count  %}
+        <li><a class="last" href="/service?limit={{ limit }}&p={{ next_p }}"><i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
       </ul>
     </div>
   </div>

@@ -4,6 +4,7 @@ from main.models import Glavniy,Tip,About,Certificate,Doctor,Register,Prize,Faq,
 from main.models import Success,Test,Latest,Staff,Partner,Contact,Opening,Information,History,History_img,Mission
 from main.models import Service,ProjectType,ProjectItem
 from django.http.response import JsonResponse
+import math
 # Create your views here.
 
 
@@ -98,15 +99,28 @@ def aboutHandler(request):
 
 
 def serviceHandler(request):
+    limit = int(request.GET.get('limit', 3))
+    p = int(request.GET.get('p', 1))
+    stop = p * limit
+    start = (p-1) * limit
+    projects = ProjectItem.objects.all()[start:stop]
+    item_count = ProjectItem.objects.count()
+    page_count = math.ceil(item_count/limit)
+    page_range = range(1, page_count + 1)
+    prev_p = p-1
+    next_p = p+1
+
+
+
+
+
     page = 'service'
     contacts = Contact.objects.filter(status=0)
     openings = Opening.objects.filter(status=0)
     tweets = Tweet.objects.filter(status=0)[:3]
     informations = Information.objects.filter(status=0)
-    services = Service.objects.filter(status=0)
     types = ProjectType.objects.filter(status=0)
-    projects = ProjectItem.objects.all()
-
+    services = Service.objects.filter(status=0)
 
     return render(request, 'service.html', {'page':page,
                                           'contacts': contacts,
@@ -115,5 +129,29 @@ def serviceHandler(request):
                                           'informations': informations,
                                           'services':services,
                                           'types': types,
-                                          'projects': projects
+                                          'projects': projects,
+
+                                           'limit': limit,
+                                           'p':p,
+                                            'page_count': page_count,
+                                            'page_range':page_range,
+                                            'prev_p':prev_p,
+                                            'next_p':next_p
                                           })
+
+
+
+
+
+def page404Handler(request):
+    page = '404'
+    contacts = Contact.objects.filter(status=0)
+    openings = Opening.objects.filter(status=0)
+    tweets = Tweet.objects.filter(status=0)[:3]
+    return render(request, '404.html', {
+                                        'page': page,
+                                        'contacts': contacts,
+                                        'openings': openings,
+                                        'tweets': tweets
+
+                                        })
