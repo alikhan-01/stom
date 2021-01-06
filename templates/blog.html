@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+<!-- =========================
+     END MAIN MENU
+============================== -->
+<div class="page-title page-title-blog bg-pattern" data-bgcolor="199FBE">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>ПОСЛЕДНИЕ НОВОСТИ</h1>
+      {% for information in informations %}
+      <p>{{ information.latest_mini_description }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+
+        <li class="active">Последние новости </li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="blog blog-2">
+  <div class="container">
+    <div class="row">
+      <div class="blog-container col-lg-9 col-md-9 col-sm-9 col-xs-12">
+        {% for blog in blogs %}
+        {% if forloop.counter|divisibleby:2 == 0 %}
+        <div class="row">{% endif %}
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="blog-item">
+              <div class="blog-item-image"> <img src="/media/{{ blog.logo }}" alt="" />
+                <div class="blog-item-info">
+                  <div class="blog-item-date"><i class="fa fa-calendar-o"></i>{{ blog.data }}</div>
+                  <div class="blog-item-comments"><i class="fa fa-comments-o"></i>{{ blog.comment }}</div>
+                  <div class="blog-item-view"><i class="fa fa-eye"></i>{{ blog.view }}</div>
+                  <div class="blog-item-category"><i class="fa fa-folder-o"></i>{{ blog.category }}</div>
+                </div>
+              </div>
+              <div class="blog-item-desc">
+                <div class="blog-item-title">
+                  <h3><a href="#">{{ blog.title}}</a></h3>
+                </div>
+                <div class="blog-item-author"><a href="#">{{ blog.position }}</a></div>
+                <div class="blog-item-text">
+                  <p>{{ blog.description_1 }}</p>
+                  <p>{{ blog.description_2 }}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {% if forloop.counter|divisibleby:2 == 1 %}
+        </div>{% endif %}
+        {% endfor %}
+
+        <ul class="pagination">
+        {% if p != 1 %}
+        <li><a class="first" href="/blog?limit={{ limit }}&p={{ prev_p }}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+
+        {% for x in page_range %}
+          {% if p == x %}
+          <li><a class="active">{{ x }}</a></li>
+          {% else %}
+          <li><a href="/blog?limit={{ limit }}&p={{ x }}">{{ x }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if p < page_count  %}
+        <li><a class="last" href="/service?limit={{ limit }}&p={{ next_p }}"><i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+      </ul>
+      </div>
+      <div class="right-bar col-lg-3 col-md-3 col-sm-3 col-xs-12">
+
+        <div class="search">
+          <input type="text" name="search" id="search" placeholder="Search.." />
+          <button>
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+
+        <div class="right-bar-categories">
+          <h3 class="right-bar-title"><i class="fa fa-folder-open"></i> КАТЕГОРИИ</h3>
+
+          <ul>
+            {% for category in categorys %}
+            <li {% if category_id == category.id %} class="current" {% endif %}>
+              <a  href="/blog/?limit={{ limit }}&category_id={{ category.id }}">{{ category.title }}{% if category_id == category.id %} ({{ item_count }}) {% endif %}</a>
+            </li>
+            {% endfor %}
+          </ul>
+
+        </div>
+        <div class="right-bar-archive">
+          <h3 class="right-bar-title"><i class="fa fa-calendar-o"></i> archive</h3>
+          <ul>
+            <li><a href="#">February 2016
+                <span class="right-bar-archive-tag">
+                  43
+                </span>
+              </a></li>
+            <li><a href="#">Janyary 2016
+                <span class="right-bar-archive-tag">
+                  64
+                </span>
+              </a></li>
+            <li><a href="#">December 2015
+                <span class="right-bar-archive-tag">
+                  23
+                </span>
+              </a></li>
+            <li><a href="#">November 2015
+                <span class="right-bar-archive-tag">
+                  66
+                </span>
+              </a></li>
+            <li><a href="#">October 2016
+                <span class="right-bar-archive-tag">
+                  13
+                </span>
+              </a></li>
+          </ul>
+        </div>
+        <div class="right-bar-calendar">
+          <input type="text" id="calendar" name="calendar" />
+        </div>
+        <div class="right-bar-tags">
+          <h3 class="right-bar-title"><i class="fa fa-tags"></i> tags</h3>
+          <a href="#" class="right-bar-tags-item">Dental</a> <a href="#" class="right-bar-tags-item">Doctor</a> <a href="#" class="right-bar-tags-item">Healt</a> <a href="#" class="right-bar-tags-item">Tooth whitening</a> <a href="#" class="right-bar-tags-item">Restoration</a> <a href="#" class="right-bar-tags-item">Tooth</a> <a href="#" class="right-bar-tags-item">Oral exams</a> <a href="#" class="right-bar-tags-item">Fillings and bridges</a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endblock %}

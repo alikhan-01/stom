@@ -107,7 +107,6 @@
     <!-- =========================
          MAIN MENU
     ============================== -->
-    <div id="smartposition"></div>
     <div class="top-menu" id="top-menu">
       <div class="container">
         <div class="row">
@@ -129,25 +128,10 @@
             <ul class="nav navbar-nav">
               <li {% if page == 'index' %} class="active" {% endif %} ><a href="/" >Главная</a></li>
               <li {% if page == 'about' %} class="active" {% endif %} ><a href="/about" >О нас</a></li>
-              <li {% if page == 'service' %} class="active" {% endif %} ><a href="/service" >Услуги</a>
+              <li {% if page == 'service' %} class="active" {% endif %} ><a href="/service" >Услуги</a></li>
+              <li {% if page == 'doctors' %} class="active" {% endif %} > <a href="/doctors">Наша команда</a></li>
+              <li {% if page == 'blog' %} class="active" {% endif %}> <a href="/blog" >Блог</a></li>
 
-              </li>
-              <li class="dropdown"> <a data-toggle="dropdown" href="/about" {% if page == 'about' %} class="menu-active" {% endif %} >Наша команда</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="doctors.html">Our doctors</a></li>
-                  <li><a href="doctor.html">Doctor</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"> <a data-toggle="dropdown" href="/blog" {% if page == 'blog' %} class="menu-active" {% endif %} >Блог</a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="blog1.html">Right sidebar</a></li>
-                  <li><a href="blog2.html">Left sidebar</a></li>
-                  <li><a href="blog3.html">No sidebar</a></li>
-                  <li><a href="blog4.html">Column right sidebar</a></li>
-                  <li><a href="blog_item.html">Post with sidebar</a></li>
-                  <li><a href="blog_item2.html">Post no sidebar</a></li>
-                </ul>
-              </li>
               <li class="dropdown"> <a data-toggle="dropdown" href="/about" {% if page == 'about' %} class="menu-active" {% endif %} >Полезные</a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="templates/gallery1.html">Gallery 1</a></li>
@@ -158,15 +142,14 @@
                   <li><a href="templates/404.html">404 Page</a></li>
                 </ul>
               </li>
-              <li><a href="/contacts" {% if page == 'about' %} class="menu-active" {% endif %} >Контакты</a></li>
+              <li {% if page == 'contacts' %} class="active" {% endif %}><a href="/contacts" >Контакты</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-      {% block content %}
-
-      {% endblock %}
+    {% block content %}
+    {% endblock %}
 
 
 

@@ -170,4 +170,39 @@ class ProjectItemAdmin(admin.ModelAdmin):
 admin.site.register(ProjectItem,ProjectItemAdmin)
 
 
+##################################
+class Doctor_allAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Doctor_all,Doctor_allAdmin)
+
+
+##################################
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Category,CategoryAdmin)
+
+
+##################################
+class BlogAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Blog,BlogAdmin)
+
+
+##################################
+class MarshrutAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Marshrut,MarshrutAdmin)
+
+
+##################################
+class ConformAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Conform,ConformAdmin)
+
+
 # Register your models here.

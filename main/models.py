@@ -218,9 +218,14 @@ class Information(models.Model):
     testimonial_description = models.TextField(blank=True)
     latest_description = models.TextField(blank=True)
     about_mini_description = models.TextField(blank=True)
+    make_mini_description = models.TextField(blank=True)
     service_mini_description = models.TextField(blank=True)
     service_item_description = models.TextField(blank=True)
     service_title_description = models.TextField(blank=True)
+    latest_mini_description = models.TextField(blank=True)
+    dc_mini_description = models.TextField(blank=True)
+    con_mini_description = models.TextField(blank=True)
+    con_us_mini_description = models.TextField(blank=True)
     status = models.IntegerField(default=0)
 
     def __str__(self):
@@ -302,3 +307,66 @@ class ProjectItem(models.Model):
 
     def __str__(self):
         return self.title
+
+class Doctor_all(models.Model):
+    title = models.CharField(max_length=300, blank=True)
+    description_1 = models.TextField(blank=True)
+    mini_1 = models.CharField(max_length=300)
+    mini_2 = models.CharField(max_length=300)
+    mini_3 = models.CharField(max_length=300)
+    description_2 = models.TextField(blank=True)
+    description_3 = models.TextField(blank=True)
+    logo = models.ImageField(upload_to='upload')
+    mini_description = models.TextField()
+    last_name = models.CharField(max_length=300, blank=True)
+    first_name = models.CharField(max_length=300, blank=True)
+    position = models.CharField(max_length=300, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=300, blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Blog(models.Model):
+    logo = models.ImageField(upload_to='upload')
+    data = models.DateField()
+    comment = models.IntegerField(default=0)
+    view = models.IntegerField(default=0)
+    title = models.CharField(max_length=300)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name_author = models.CharField(max_length=300)
+    description_1 = models.TextField()
+    description_2 = models.TextField(blank=True)
+    rating = models.IntegerField(default=0)
+    status = models.IntegerField(default=0)
+
+
+    def __str__(self):
+        return self.title
+
+
+class Marshrut(models.Model):
+    title = models.CharField(max_length=300,blank=True)
+    icon = models.CharField(max_length=300, blank=True)
+    description = models.TextField(blank=True)
+    status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class Conform(models.Model):
+    name = models.CharField(max_length=300)
+    phone = models.CharField(max_length=300)
+    email = models.EmailField(max_length=300, blank=True)
+    message = models.TextField(blank=True)
+    status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name

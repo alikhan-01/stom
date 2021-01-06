@@ -138,21 +138,7 @@ jQuery(document).ready(function($){
 		Contact Form
 	=========================================*/
 	
-	if($('#contactForm').length !== 0){
-		var options = {
-			target: '.message .alert',
-			beforeSubmit: showRequest,
-			success: showResponse
-		};
-		$('#contactForm').ajaxForm(options);
-		
-		function showRequest(formData, jqForm, options) {
-			var queryString = $.param(formData);
-				return true;
-			}
-		function showResponse(responseText, statusText) {
-			}
-	}
+
 	
 	/*=======================================
 		Bookform

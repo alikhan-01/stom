@@ -706,7 +706,6 @@ frame {
   background-position: right top;
   padding-right: 300px;
 }
-
 .smartposition #top-menu {
 	position:fixed;
 	top:0;
@@ -946,6 +945,11 @@ frame {
   line-height: 29px;
   margin: 0 4px;
   transition: all 200ms;
+}
+
+
+.doctors-item:hover img {
+    transform: scale(1.1);
 }
 .doctors-item-social a:hover,
 .doctors-item-social a:focus {
@@ -3081,7 +3085,7 @@ frame {
 .map-info-location {
   font-size: 13px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: -25px;
 }
 .map-info-location span {
   margin: 4px 0 0 15px;
