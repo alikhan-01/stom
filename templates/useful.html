@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+
+
+
+<div class="page-title page-title-gallery2 bg-pattern" data-bgcolor="056CA1">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>ПОЛЕЗНЫЕ</h1>
+      {% for information in informations %}
+      <p>{{ information.useful_mini_description }}</p>
+      {% endfor %}</div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li class="active">Полезные</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="gallery gallery-2">
+  <div class="container">
+    <div class="row">
+      {%for information in informations %}
+      <div class="gallery-text"> {{ information.useful_description }} </div>
+      {% endfor %}
+      <div class="gallery-2-items">
+        {% for useful in usefuls %}
+        <div class="gallery-2-item col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="gallery-2-item-images">
+            <div class="gallery-2-item-image"> <img src="/media/{{ useful.logo_before }}" alt="" />
+              <div class="gallery-2-item-image-title">ДО</div>
+            </div>
+            <div class="gallery-2-item-image"> <img src="/media/{{ useful.logo_after }}" alt="" />
+              <div class="gallery-2-item-image-title">ПОСЛЕ</div>
+            </div>
+          </div>
+          <div class="gallery-2-item-info">
+            <h4 class="gallery-2-item-title">{{ useful.title }}</h4>
+            <p class="gallery-2-item-desc">{{ useful.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <ul class="pagination">
+        {% if p != 1 %}
+        <li><a class="first" href="/service?limit={{ limit }}&p={{ prev_p }}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+
+        {% for x in page_range %}
+          {% if p == x %}
+          <li><a class="active">{{ x }}</a></li>
+          {% else %}
+          <li><a href="/useful?limit={{ limit }}&p={{ x }}">{{ x }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if p < page_count  %}
+        <li><a class="last" href="/useful?limit={{ limit }}&p={{ next_p }}"><i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="make">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 make-text">
+				<h2>ЗАПИСАТЬСЯ НА ПРИЕМ</h2>
+				{% for information in informations %}
+				<p>{{ information.make_mini_description }}</p>
+				{% endfor %}
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 make-button"> <a href="#bookformtop" class="fancybox-2 btn btn-default">
+				<span class="plus">+</span>
+				Записаться на прием</a> </div>
+		</div>
+	</div>
+</div>
+
+    {% endblock %}

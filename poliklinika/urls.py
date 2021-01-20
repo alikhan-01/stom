@@ -19,16 +19,19 @@ from django.conf.urls import url
 from django.views.static import serve
 from poliklinika import settings
 from main.views import indexHandler,aboutHandler,serviceHandler, page404Handler,blogHandler,doctorsHandler,contactsHandler
+from main.views import doctorsItemHandler,usefulHandler
 
 urlpatterns = [
-    path('about', aboutHandler),
-    path('service', serviceHandler),
-    path('blog', blogHandler),
-    path('doctors', doctorsHandler),
-    path('contacts', contactsHandler),
+    path('about/', aboutHandler),
+    path('service/', serviceHandler),
+    path('blog/', blogHandler),
+    path('doctors/', doctorsHandler),
+    path('doctors/<int:item_id>/', doctorsItemHandler),
+    path('useful/', usefulHandler),
+    path('contacts/', contactsHandler),
 
 
-   url(r'^media/(?P<path>.*)$', serve,{
+    url(r'^media/(?P<path>.*)$', serve,{
         'document_root': settings.MEDIA_ROOT
     }),
     path('admin/', admin.site.urls),

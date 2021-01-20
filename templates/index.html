@@ -206,7 +206,7 @@
                  BOOKING FORM
             ============================== -->
             <div class="booking">
-              <div class="container">
+              <div class="container js-index-form">
                 <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 booking-form">
@@ -216,8 +216,19 @@
                       </span>
                     </h2>
                     <!-- //sendmail-book.php-->
-                    <form  id="request"  method="post">
+
                       {% csrf_token %}
+                       <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item f-doctor">
+                            <select id="selectww" class="form-doctor selectBox" name="selectww" >
+                              <option value="Not selected" selected="selected">Выберите врача</option>
+                              {% for doctor in doctors %}
+                              <option value="{{ doctor.last_name }} {{ doctor.first_name }}">{{ doctor.last_name }} {{ doctor.first_name }}</option>
+                              {% endfor %}
+                            </select>
+
+                          </div>
+                      </div>
                       <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 booking-form-item name">
                           <input type="text" name="name" id="name" data-validation="required" placeholder="Ваше имя" />
@@ -256,7 +267,7 @@
                       </div>
                       <div class="row latest-row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 booking-form-item">
-                          <button type="submit"    class="btn btn-primary">
+                          <button type="submit"    class="btn btn-primary js-sent-index-form">
                             Записаться
                           </button>
                         </div>
@@ -272,7 +283,7 @@
                         </div>
                       </div>
                       <div class="form-messages"></div>
-                    </form>
+
                   </div>
                 </div>
               </div>
@@ -363,10 +374,10 @@
                         </div>
                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                           <div class="stories-item-before"> <img src="/media/{{ success.logo_left }}" alt="" />
-                            <div class="stories-item-before-title"> BEFORE </div>
+                            <div class="stories-item-before-title"> ДО </div>
                           </div>
                           <div class="stories-item-after"> <img src="/media/{{ success.logo_right }}" alt="" />
-                            <div class="stories-item-after-title"> AFTER </div>
+                            <div class="stories-item-after-title"> ПОСЛЕ </div>
                           </div>
                         </div>
 
@@ -461,7 +472,7 @@
                         </div>
                         <div class="blog-item-author"><a href="#">{{ latest.name_author }}</a></div>
                         <div class="blog-item-text">{{ latest.description }}</div>
-                        <div class="blog-item-button"><a href="#" class="btn btn-primary-1">ЧИТАТЬ БОЛЬШЕ</a></div>
+
                       </div>
                       {% endfor %}
 
@@ -514,7 +525,7 @@
                           <div class="tips-content-item-text">
                             <p>{{ staff.mini_description }}</p>
                             <p>{{ staff.description }}</p>
-                            <div class="tips-content-item-btn"> <a href="#" class="btn btn-primary-1">ЧИТАТЬ БОЛЬШЕ</a> </div>
+
                           </div>
                           <div class="tips-content-item-image"> <img src="/media/{{ staff.logo }}" alt="" />
                             <div class="tips-content-item-name"> <a href="#">{{ staff.last_name }} {{ staff.first_name }}</a> </div>

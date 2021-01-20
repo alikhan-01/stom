@@ -1,21 +1,27 @@
-$("#request").submit(function() {
+$(".js-sent-index-form").click(function() {
+
 	    var oData = {
-	        'name': $('#request').find('[name="name"]').val(),
-	        'phone': $('#request').find('[name="phone"]').val(),
-	        'email': $('#request').find('[name="email"]').val(),
-	        'date': $('#request').find('[name="date"]').val(),
-	        'time': $('#request').find('[name="time"]').val(),
-	        'message': $('#request').find('[name="message"]').val()
+	        'selectww': $('.js-index-form').find('[name="selectww"]').val(),
+	        'name': $('.js-index-form').find('[name="name"]').val(),
+	        'phone': $('.js-index-form').find('[name="phone"]').val(),
+	        'email': $('.js-index-form').find('[name="email"]').val(),
+	        'date': $('.js-index-form').find('[name="date"]').val(),
+	        'time': $('.js-index-form').find('[name="time"]').val(),
+	        'message': $('.js-index-form').find('[name="message"]').val(),
+	        "csrfmiddlewaretoken": $('.js-index-form').find('[name="csrfmiddlewaretoken"]').val()
 
 	    };
 
-	    oData = $('#request').serialize();
+
 
 	    $.ajax({
             type: 'POST',
             url: '/',
-            dataType: 'html',
+            dataType: 'json',
             data: oData,
+            function(){
+                alert("Успешно отправлено")ж
+            }
 
 	    })
 

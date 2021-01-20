@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from main.models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from main.models import Glavniy,Tip,About,Certificate,Doctor,Register,Prize,Faq,Why_about
 from main.models import Success,Test,Latest,Staff,Partner,Contact,Opening,Information,History,History_img,Mission
-from main.models import Service,ProjectType,ProjectItem,Doctor_all,Marshrut,Category,Blog
+from main.models import Service,ProjectType,ProjectItem,Doctor_all,Marshrut,Category,Blog,Useful
 
 import math
 # Create your views here.
@@ -57,6 +57,7 @@ def indexHandler(request):
         phone = request.POST.get('phone', '')
         email = request.POST.get('email', '')
         message = request.POST.get('message', '')
+        selectww = request.POST.get('selectww', '')
         from datetime import datetime
         dtn = datetime.now()
         r.data = dtn
@@ -65,10 +66,11 @@ def indexHandler(request):
         r.phone = phone
         r.email = email
         r.message = message
+        r.selectww = selectww
 
         r.save()
 
-    return HttpResponse({'success': True, 'errorMsg': '', '_success': True})
+        return JsonResponse({'success': True, 'errorMsg': '', '_success': True})
 
 def aboutHandler(request):
     page = 'about'
@@ -121,22 +123,25 @@ def serviceHandler(request):
     types = ProjectType.objects.filter(status=0)
     services = Service.objects.filter(status=0)
 
-    return render(request, 'service.html', {'page':page,
-                                          'contacts': contacts,
-                                          'openings': openings,
-                                          'tweets': tweets,
-                                          'informations': informations,
-                                          'services':services,
-                                          'types': types,
-                                          'projects': projects,
+    DATA = {
+            'page':page,
+            'contacts': contacts,
+            'openings': openings,
+            'tweets': tweets,
+            'informations': informations,
+            'services':services,
+            'types': types,
+            'projects': projects,
 
-                                           'limit': limit,
-                                           'p':p,
-                                            'page_count': page_count,
-                                            'page_range':page_range,
-                                            'prev_p':prev_p,
-                                            'next_p':next_p
-                                          })
+            'limit': limit,
+            'p':p,
+            'page_count': page_count,
+            'page_range':page_range,
+            'prev_p':prev_p,
+            'next_p':next_p
+            }
+
+    return render(request, 'service.html', DATA)
 
 
 def page404Handler(request):
@@ -173,9 +178,33 @@ def doctorsHandler(request):
                                         })
 
 
+def doctorsItemHandler(request, item_id):
+    page = 'doctors'
+    contacts = Contact.objects.filter(status=0)
+    openings = Opening.objects.filter(status=0)
+    tweets = Tweet.objects.filter(status=0)[:3]
+    informations = Information.objects.filter(status=0)
+    active_doctor = Doctor.objects.get(id=int(item_id))
+    doctors = Doctor.objects.filter(status=0)
+
+    return render(request, 'doctor_item.html', {
+                                        'page': page,
+                                        'contacts': contacts,
+                                        'openings': openings,
+                                        'tweets': tweets,
+                                        'informations': informations,
+                                        'active_doctor': active_doctor,
+                                        'doctors': doctors
+                                        })
+
+
+
+
 def blogHandler(request):
     q = request.GET.get('q', '')
     category_id = int(request.GET.get('category_id', 0))
+    year = int(request.GET.get('year', 0))
+    month = int(request.GET.get('month', 0))
 
     limit = int(request.GET.get('limit', 4))
     p = int(request.GET.get('p', 1))
@@ -184,15 +213,23 @@ def blogHandler(request):
 
 
     if q:
-        blogs = Blog.objects.filter(status=0).filter(title__contains=q).order_by('-rating')[start:stop]
-        item_count = Blog.objects.filter(status=0).filter(title__contains=q).count()
+        blogs = Blog.objects.filter(status=0).filter(description_1__contains=q).order_by('-rating')[start:stop]
+        item_count = Blog.objects.filter(status=0).filter(description_1__contains=q).count()
     else:
         if category_id:
-            blogs = Blog.objects.filter(status=0).filter(category__id=category_id).order_by('-rating')[start:stop]
-            item_count = Blog.objects.filter(status=0).filter(category__id=category_id).count()
+            if year and month:
+                blogs = Blog.objects.filter(status=0).filter(category__id=category_id).filter(data__year=year).filter(data__month=month).order_by('-rating')[start:stop]
+                item_count = Blog.objects.filter(status=0).filter(category__id=category_id).filter(data__year=year).filter(data__month=month).count()
+            else:
+                blogs = Blog.objects.filter(status=0).filter(category__id=category_id).order_by('-rating')[start:stop]
+                item_count = Blog.objects.filter(status=0).filter(category__id=category_id).count()
         else:
-            blogs = Blog.objects.filter(status=0).order_by('-rating')[start:stop]
-            item_count = Blog.objects.filter(status=0).count()
+            if year and month:
+                blogs = Blog.objects.filter(status=0).filter(data__year=year).filter(data__month=month).order_by('-rating')[start:stop]
+                item_count = Blog.objects.filter(status=0).filter(data__year=year).filter(data__month=month).count()
+            else:
+                blogs = Blog.objects.filter(status=0).order_by('-rating')[start:stop]
+                item_count = Blog.objects.filter(status=0).count()
 
     page_count = math.ceil(item_count / limit)
     page_range = range(1, page_count + 1)
@@ -207,6 +244,35 @@ def blogHandler(request):
     tweets = Tweet.objects.filter(status=0)[:3]
     informations = Information.objects.filter(status=0)
     categorys = Category.objects.all()
+
+    ######## ARHIV ########
+    blog_list = Blog.objects.filter(status=0)
+    monthes = ['', 'JANUARY', 'FEBRUARY', 'MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER']
+    # result = {
+    #     2020:{
+    #         1:{
+    #             'title': 'FEBRUARY',
+    #             'count': 0
+    #         }
+    #     }
+    # }
+    result = {}
+
+    for bl in blog_list:
+        bl = bl.data
+        if bl.year not in result:
+            result[bl.year] = {}
+
+        if bl.month not in result[bl.year]:
+            result[bl.year][bl.month] = {
+                'title': monthes[bl.month],
+                'count': 0
+            }
+
+        result[bl.year][bl.month]['count'] += 1
+
+
+
     return render(request, 'blog.html', {
                                         'page': page,
                                         'contacts': contacts,
@@ -225,7 +291,9 @@ def blogHandler(request):
 
                                         'category_id':category_id,
                                         'item_count':item_count,
-                                        'q': q
+                                        'q': q,
+                                        'result': result,
+                                        'monthes': monthes
                                         })
 
 
@@ -260,3 +328,43 @@ def contactsHandler(request):
         c.save()
 
     return HttpResponse({'success': True, 'errorMsg': '', '_success': True})
+
+
+def usefulHandler(request):
+    limit = int(request.GET.get('limit', 2))
+    p = int(request.GET.get('p', 1))
+    stop = p * limit
+    start = (p - 1) * limit
+    usefuls = Useful.objects.all()[start:stop]
+    item_count = Useful.objects.count()
+    page_count = math.ceil(item_count / limit)
+    page_range = range(1, page_count + 1)
+    prev_p = p - 1
+    next_p = p + 1
+    print(page_count)
+    print(page_range)
+
+
+    page = 'useful'
+    contacts = Contact.objects.filter(status=0)
+    openings = Opening.objects.filter(status=0)
+    tweets = Tweet.objects.filter(status=0)[:3]
+    informations = Information.objects.filter(status=0)
+
+
+    return render(request, 'useful.html', {
+                                        'page': page,
+                                        'contacts': contacts,
+                                        'openings': openings,
+                                        'tweets': tweets,
+                                        'informations':informations,
+                                        'usefuls':usefuls,
+
+
+                                        'limit': limit,
+                                        'p': p,
+                                        'page_count': page_count,
+                                        'page_range': page_range,
+                                        'prev_p': prev_p,
+                                        'next_p': next_p
+                                        })

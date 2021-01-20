@@ -2206,7 +2206,7 @@ frame {
   color: #fff;
 }
 .footer-item-3-socials a i {
-  margin: 0;
+  margin: 7px;
 }
 .footer-item-4 {
   background: #fff;
@@ -3577,7 +3577,7 @@ frame {
   width: 40px;
   height: 40px;
   text-align: center;
-  font-size: 23px;
+  font-size: 33px;
 }
 .fancybox-wrap {
   margin-bottom: 20px;

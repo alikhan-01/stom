@@ -57,18 +57,19 @@ class Doctor(models.Model):
     last_name = models.CharField(max_length=300)
     first_name = models.CharField(max_length=300)
     position = models.CharField(max_length=300)
-    info_description = models.TextField(max_length=110,blank=True)
+    info_description = models.TextField(blank=True)
     status = models.IntegerField(default=0)
     rating = models.IntegerField(default=0)
     facebook = models.CharField(max_length=300, blank=True)
-    twitter = models.CharField(max_length=300, blank=True)
-    skype = models.CharField(max_length=300, blank=True)
+    telegram = models.CharField(max_length=300, blank=True)
+    whatsapp = models.CharField(max_length=300, blank=True)
 
     def __str__(self):
         return self.last_name
 
 
 class Register(models.Model):
+    selectww = models.CharField(max_length=300)
     name = models.CharField(max_length=300)
     phone = models.CharField(max_length=300)
     email = models.EmailField(max_length=300, blank=True)
@@ -180,9 +181,9 @@ class Contact(models.Model):
     email = models.CharField(max_length=300, blank=True)
     email_ssylka = models.CharField(max_length=300, blank=True)
     facebook = models.CharField(max_length=300, blank=True)
-    google = models.CharField(max_length=300, blank=True)
-    twitter = models.CharField(max_length=300, blank=True)
-    skype = models.CharField(max_length=300, blank=True)
+    instagram = models.CharField(max_length=300, blank=True)
+    telegram = models.CharField(max_length=300, blank=True)
+    whatsapp = models.CharField(max_length=300, blank=True)
     status = models.IntegerField(default=0)
 
     def __str__(self):
@@ -226,6 +227,8 @@ class Information(models.Model):
     dc_mini_description = models.TextField(blank=True)
     con_mini_description = models.TextField(blank=True)
     con_us_mini_description = models.TextField(blank=True)
+    useful_mini_description = models.TextField(blank=True)
+    useful_description = models.TextField(blank=True)
     status = models.IntegerField(default=0)
 
     def __str__(self):
@@ -370,3 +373,17 @@ class Conform(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Useful(models.Model):
+    logo_before = models.ImageField(upload_to='upload')
+    logo_after = models.ImageField(upload_to='upload')
+    title = models.CharField(max_length=300)
+    description = models.TextField(blank=True)
+    rating = models.IntegerField(default=0)
+    status = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+

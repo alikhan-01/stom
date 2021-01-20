@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+
+	{% block content %}
+			{% load static %}
+<!-- =========================
+     END MAIN MENU
+============================== -->
+<div class="page-title page-title-doctor bg-pattern" data-bgcolor="2BAAA1">
+  <div class="page-title-overlay">
+    <div class="container">
+      <h1>Наша команда</h1>
+      {% for information in informations %}
+      <p>{{ information.dc_mini_description }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-home"><a href="#"><i class="fa fa-home"></i></a></li>
+        <li style="color: #777;">Наша команда</li>
+
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="doctors-text">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="doctors-text-text">
+          <p  class="section-title" style="font-family: cursive;">
+            {{ active_doctor.last_name }} {{ active_doctor.first_name }}
+          </p>
+          <ul class="text-list">
+            <li>{{ active_doctor.info_description }}</li>
+
+          </ul>
+          <p></p>
+          <p></p>
+        </div>
+        <div class="doctors-text-doctor"> <img src="/media/{{ active_doctor.logo }}" alt="" />
+          <div class="doctors-text-doctor-desc">{{ active_doctor.mini_description }}</div>
+          <div class="doctors-text-doctor-name"> <a href="#">{{ active_doctor.last_name }} {{ active_doctor.first_name }}</a> </div>
+          <div class="doctors-text-doctor-position"> {{ active_doctor.position }} </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="doctors doctors-2">
+  <div class="container">
+    <div class="row">
+      <h2 class="section-title">
+        ВСТРЕЧАЙТЕ
+        <span class="bold700">
+          НАШИХ ВРАЧЕЙ
+        </span>
+      </h2>
+      <div class="doctors-container">
+        {% for  doctor in doctors %}
+        <div class="doctors-item col-lg-3 col-md-3 col-sm-3 col-xs-12">
+          <div class="doctors-item-container">
+            <div class="doctors-item-image"> <img src="/media/{{ doctor.logo }}" alt="" /> </div>
+            <div class="doctors-item-name"><a href="/doctors/{{ doctor.id }}/">{{ doctor.last_name }} {{ doctor.first_name }}</a></div>
+            <div class="doctors-item-position">{{ doctor.position }}</div>
+          </div>
+          <div class="doctors-item-social"> <a href="{{ doctor.facebook }}"><i class="fa fa-facebook"></i></a> <a href="{{ doctor.twitter }}"><i class="fa fa-twitter"></i></a> <a href="{{ doctor.skype }}"><i class="fa fa-skype"></i></a> </div>
+          <div class="doctors-item-button"> <a href="#bookform{{ doctor.id }}" class="fancybox-1 btn btn-default">
+              <span class="plus">
+                +
+              </span>
+              Онлайн запись к врачу</a> </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+  {% endblock %}

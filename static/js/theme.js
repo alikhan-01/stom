@@ -480,11 +480,9 @@ jQuery(document).ready(function($){
 
 
 function initialize() {
-
-	/* ==== CENTER AND MARKER COORDINATES ====*/
+/*
 	var myLatlng = new google.maps.LatLng(27.92936524,-82.5084883);
 
-	/* ==== MAP OPTIONS ====*/
 	var mapOptions = {
 		center: myLatlng,
 		zoom: 17,
@@ -492,17 +490,14 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	
-	/* ==== MAP INITIALIZE ====*/
 	var map = new google.maps.Map(document.getElementById("footer-item-4"), mapOptions);
 
 	if($('*').is('#map')) {
 		var map1 = new google.maps.Map(document.getElementById("map"), mapOptions);
 	}
 
-	/* ==== MARKER IMAGE ====*/
 	var image = 'static/images/marker.png';
 	
-	/* ==== SET MARKER ====*/
 	var marker = new google.maps.Marker({
 		position: myLatlng,
 		map: map,
@@ -516,9 +511,9 @@ function initialize() {
 			icon: image
 		});
 	}
-
+    */
 }
 window.onload = function(){
-	initialize();
+	//initialize();
 }
 

@@ -205,4 +205,10 @@ class ConformAdmin(admin.ModelAdmin):
 admin.site.register(Conform,ConformAdmin)
 
 
+##################################
+class UsefulAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Useful,UsefulAdmin)
+
 # Register your models here.
