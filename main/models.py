@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+#from ckeditor.fields import RichTextField
 from datetime import datetime
 
 # Create your models here.
